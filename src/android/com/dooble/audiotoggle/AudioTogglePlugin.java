@@ -33,12 +33,14 @@ public class AudioTogglePlugin extends CordovaPlugin {
 	    	(AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 	    
 	    if (mode.equals("earpiece")) {
-	    	audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+	    	audioManager.setMode(AudioManager.MODE_IN_CALL);
 	    	audioManager.setSpeakerphoneOn(false);
+		audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 	        return true;
 	    } else if (mode.equals("speaker")) {        
-	    	audioManager.setMode(AudioManager.STREAM_MUSIC);
+	    	audioManager.setMode(AudioManager.MODE_IN_CALL);
 	    	audioManager.setSpeakerphoneOn(true);
+		audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 	        return true;
 	    } else if (mode.equals("ringtone")) {        
 	    	audioManager.setMode(AudioManager.MODE_RINGTONE);
@@ -47,6 +49,7 @@ public class AudioTogglePlugin extends CordovaPlugin {
 	    } else if (mode.equals("normal")) {        
 	    	audioManager.setMode(AudioManager.MODE_NORMAL);
 	    	audioManager.setSpeakerphoneOn(false);
+		audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 	        return true;
 	    }
 	    
